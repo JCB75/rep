@@ -17,7 +17,7 @@
             <fieldset>
                 <legend><?= __('Add Property') ?></legend>
                 <?php
-                    echo $this->Form->control('id');
+                    // echo $this->Form->control('id');
                     echo $this->Form->control('mls');
                     echo $this->Form->control('address');
                     echo $this->Form->control('beds');

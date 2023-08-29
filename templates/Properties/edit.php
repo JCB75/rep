@@ -10,8 +10,8 @@
             <h4 class="heading"><?= __('Actions') ?></h4>
             <?= $this->Form->postLink(
                 __('Delete'),
-                ['action' => 'delete', $property->MLS],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $property->MLS), 'class' => 'side-nav-item']
+                ['action' => 'delete', $property->id],
+                ['confirm' => __('Are you sure you want to delete # {0}?', $property->id), 'class' => 'side-nav-item']
             ) ?>
             <?= $this->Html->link(__('List Properties'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
@@ -22,7 +22,7 @@
             <fieldset>
                 <legend><?= __('Edit Property') ?></legend>
                 <?php
-                    echo $this->Form->control('id');
+                    // echo $this->Form->control('id');
                     echo $this->Form->control('mls');
                     echo $this->Form->control('address');
                     echo $this->Form->control('beds');
