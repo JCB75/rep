@@ -37,7 +37,7 @@
                     <td><?= $this->Number->format($property->beds) ?></td>
                     <td><?= $this->Number->format($property->baths) ?></td>
                     <td><?= $this->Number->format($property->sq_ft) ?></td>
-                    <td><?= $this->Number->format($property->price) ?></td>
+                    <td><?= $this->Number->currency($property->price) ?></td>
                     <td><?= h($property->date) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $property->MLS]) ?>

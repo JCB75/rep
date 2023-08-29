@@ -19,16 +19,16 @@
             <h3><?= h($property->MLS) ?></h3>
             <table>
                 <tr>
-                    <th><?= __('Address') ?></th>
-                    <td><?= h($property->address) ?></td>
-                </tr>
-                <tr>
                     <th><?= __('Id') ?></th>
                     <td><?= $this->Number->format($property->id) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Mls') ?></th>
                     <td><?= $this->Number->format($property->mls) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Address') ?></th>
+                    <td><?= h($property->address) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Beds') ?></th>
