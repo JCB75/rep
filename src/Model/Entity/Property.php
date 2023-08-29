@@ -9,7 +9,7 @@ use Cake\ORM\Entity;
  * Property Entity
  *
  * @property int $id
- * @property int $mls
+ * @property string $mls
  * @property string $address
  * @property int $beds
  * @property int $baths

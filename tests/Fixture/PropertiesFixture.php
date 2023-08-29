@@ -20,7 +20,7 @@ class PropertiesFixture extends TestFixture
         $this->records = [
             [
                 'id' => 1,
-                'mls' => 1,
+                'mls' => 'Lorem ip',
                 'address' => 'Lorem ipsum dolor sit amet',
                 'beds' => 1,
                 'baths' => 1,

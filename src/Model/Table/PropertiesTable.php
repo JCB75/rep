@@ -51,7 +51,8 @@ class PropertiesTable extends Table
     public function validationDefault(Validator $validator): Validator
     {
         $validator
-            ->integer('mls')
+            ->scalar('mls')
+            ->maxLength('mls', 10)
             ->requirePresence('mls', 'create')
             ->notEmptyString('mls');
 
