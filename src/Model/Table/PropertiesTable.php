@@ -38,8 +38,8 @@ class PropertiesTable extends Table
         parent::initialize($config);
 
         $this->setTable('properties');
-        $this->setDisplayField('MLS');
-        $this->setPrimaryKey('MLS');
+        $this->setDisplayField('id');
+        $this->setPrimaryKey('id');
     }
 
     /**

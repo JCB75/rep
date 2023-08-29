@@ -8,8 +8,8 @@
     <aside class="column">
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('Edit Property'), ['action' => 'edit', $property->MLS], ['class' => 'side-nav-item']) ?>
-            <?= $this->Form->postLink(__('Delete Property'), ['action' => 'delete', $property->MLS], ['confirm' => __('Are you sure you want to delete # {0}?', $property->MLS), 'class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('Edit Property'), ['action' => 'edit', $property->id], ['class' => 'side-nav-item']) ?>
+            <?= $this->Form->postLink(__('Delete Property'), ['action' => 'delete', $property->id], ['confirm' => __('Are you sure you want to delete # {0}?', $property->id), 'class' => 'side-nav-item']) ?>
             <?= $this->Html->link(__('List Properties'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
             <?= $this->Html->link(__('New Property'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
         </div>
@@ -18,12 +18,12 @@
         <div class="properties view content">
             <h3><?= h($property->MLS) ?></h3>
             <table>
-                <tr>
+                <!-- <tr>
                     <th><?= __('Id') ?></th>
                     <td><?= $this->Number->format($property->id) ?></td>
-                </tr>
+                </tr> -->
                 <tr>
-                    <th><?= __('Mls') ?></th>
+                    <th><?= __('MLS') ?></th>
                     <td><?= $this->Number->format($property->mls) ?></td>
                 </tr>
                 <tr>
