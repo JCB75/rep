@@ -3,21 +3,34 @@
  * @var \App\View\AppView $this
  * @var iterable<\App\Model\Entity\Property> $properties
  */
+$options = [
+    '1' => 1,
+    '2' => 2,
+    '3' => 3,
+    '4' => 4,
+    '4' => 4,
+    '5' => 5,
+    '6' => 6,
+    '7' => 7,
+    '8' => 8,
+];
 ?>
 
 <div class="row">
     <aside class="column">
         <div class="side-nav content">
-            <!-- <h4 class="heading"><?= __('Search') ?></h4> -->
             <?= $this->Form->create(null, ['type' => 'get']) ?>
             <?= $this->Form->control('mls', ['label' => 'MLS#', 'value' => $this->request->getQuery('mls')]) ?>
             <?= $this->Form->control('address', ['label' => 'Address', 'value' => $this->request->getQuery('address')]) ?>
+            <label class="input text" for="beds"><?= __('Minimum beds') ?></label>
+            <?= $this->Form->select('beds', $options, ['label' => 'Minimum beds', 'value' => $this->request->getQuery('beds')]); ?>
+            <label class="input text" for="baths"><?= __('Minimum baths') ?></label>
+            <?= $this->Form->select('baths', $options, ['label' => 'Minimum baths', 'value' => $this->request->getQuery('baths')]); ?>
+            <?= $this->Form->control('sq_ft', ['label' => 'Minimum Square Feet', 'value' => $this->request->getQuery('sq_ft')]) ?>
+            <?= $this->Form->control('max_price', ['label' => 'Maximum Price', 'value' => $this->request->getQuery('max_price')]) ?>
+            <?= $this->Form->control('min_price', ['label' => 'Minimum Price', 'value' => $this->request->getQuery('min_price')]) ?>
             <?= $this->Form->submit('Search') ?>
             <?= $this->Form->end() ?>
-
-            <!-- <?= $fruits = ['1' => 'orange', '2' => 'melon', '3' => 'lemon', '4' => 'apple'];
-            echo $this->Form->control('Fruit', ['options' => $fruits, 'label' => "select your fruit", 'value' => 'lemon'], ['class' => 'button float-left']);
-            ?> -->
         </div>
     </aside>
     <div class="column-responsive column-80">

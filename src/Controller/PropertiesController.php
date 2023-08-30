@@ -19,13 +19,17 @@ class PropertiesController extends AppController
     public function index()
     {
         $query = $this->request->getQuery();
-        //exit($key); //check for key
         if($query){
             $query = $this->Properties->find('all')->where([
                 'mls like'=>'%'.$query['mls'].'%',
-                'address like'=>'%'.$query['address'].'%'
+                'address like'=>'%'.$query['address'].'%',
+                'beds >='=> intval($query['beds']),
+                'baths >='=> intval($query['baths']),
+                'sq_ft >='=> intval($query['sq_ft']),
+                'price >='=> intval($query['min_price']),
+                'price <='=> intval($query['max_price'])
             ]);
-        }else{
+            // dd($query); //check query
             $query = $this->Properties;
         }
        //$properties = $this->paginate($this->Properties);
