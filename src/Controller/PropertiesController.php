@@ -19,8 +19,8 @@ class PropertiesController extends AppController
     public function index()
     {
         $query = $this->request->getQuery();
-        if($query){
-            $query = $this->Properties->find('all')->where([
+        $query = ($query) ? $this->Properties->find('all')->where([
+                // "OR" => [
                 'mls like'=>'%'.$query['mls'].'%',
                 'address like'=>'%'.$query['address'].'%',
                 'beds >='=> intval($query['beds']),
@@ -28,12 +28,11 @@ class PropertiesController extends AppController
                 'sq_ft >='=> intval($query['sq_ft']),
                 'price >='=> intval($query['min_price']),
                 'price <='=> intval($query['max_price'])
-            ]);
-            // dd($query); //check query
-            $query = $this->Properties;
-        }
-       //$properties = $this->paginate($this->Properties);
+                ]) : $this->Properties;
+        //$properties = $this->paginate($this->Properties);
+        // dd($query); //check query
         $properties = $this->paginate($query);
+        // dd($properties);
         $this->set(compact('properties'));
     }
 
