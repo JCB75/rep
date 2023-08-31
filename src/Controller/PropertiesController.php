@@ -19,23 +19,22 @@ class PropertiesController extends AppController
     public function index()
     {
         $query = $this->request->getQuery();
+        // dd($query);
         $query = ($query) ? $this->Properties->find('all')->where([
                 // "OR" => [
-                'mls like'=>'%'.$query['mls'].'%',
-                'address like'=>'%'.$query['address'].'%',
-                'beds >='=> intval($query['beds']),
-                'baths >='=> intval($query['baths']),
-                'sq_ft >='=> intval($query['sq_ft']),
-                'price >='=> intval($query['min_price']),
-                'price <='=> intval($query['max_price'])
+                'mls like'=> $query['mls'] ? '%'.$query['mls'].'%' : '',
+                'address like'=> $query['address'] ? '%'.$query['address'].'%' : '',
+                'beds >='=> $query['beds'] ? intval($query['beds']) : 1,
+                'baths >='=> $query['baths'] ? intval($query['baths']) : 1,
+                'sq_ft >='=> $query['sq_ft'] ? intval($query['sq_ft']) : 1,
+                'price between ' .(intval($query['min_price'])). " and " .(intval($query['max_price']))
                 ]) : $this->Properties;
-        //$properties = $this->paginate($this->Properties);
-        // dd($query); //check query
+
         $properties = $this->paginate($query);
         // dd($properties);
         $this->set(compact('properties'));
     }
-
+// 
     /**
      * View method
      *

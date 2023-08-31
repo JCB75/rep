@@ -29,6 +29,7 @@ class Property extends Entity
      * @var array<string, bool>
      */
     protected $_accessible = [
+        'id' => true,
         'mls' => true,
         'address' => true,
         'beds' => true,
