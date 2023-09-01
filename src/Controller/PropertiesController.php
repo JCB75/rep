@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 namespace App\Controller;
+use Cake\I18n\FrozenDate;
 
 /**
  * Properties Controller
@@ -18,23 +19,33 @@ class PropertiesController extends AppController
      */
     public function index()
     {
-        $query = $this->request->getQuery();
-        // dd($query);
-        $query = ($query) ? $this->Properties->find('all')->where([
-                // "OR" => [
-                'mls like'=> $query['mls'] ? '%'.$query['mls'].'%' : '',
-                'address like'=> $query['address'] ? '%'.$query['address'].'%' : '',
-                'beds >='=> $query['beds'] ? intval($query['beds']) : 1,
-                'baths >='=> $query['baths'] ? intval($query['baths']) : 1,
-                'sq_ft >='=> $query['sq_ft'] ? intval($query['sq_ft']) : 1,
-                'price between ' .(intval($query['min_price'])). " and " .(intval($query['max_price']))
-                ]) : $this->Properties;
+            $query = $this->request->getQueryParams();
 
-        $properties = $this->paginate($query);
-        // dd($properties);
-        $this->set(compact('properties'));
+        if ($query) {
+            foreach ($query as $k => $v) {
+                ($k === 'date') ?? $date = new FrozenDate($params['date']);
+                $params[$k] = $v;
+            }
+        }
+
+            $results = ($query) ? $this->Properties->find('all')
+                ->where([
+                    '`mls` LIKE' => '%'.$params['mls'].'%',
+                    '`address` LIKE' => '%'.$params['address'].'%',
+                    '`beds` >=' => $params['beds'],
+                    '`baths` >=' => $params['baths'],
+                    '`sq_ft` >=' => $params['sq_ft'],
+                    '`price` BETWEEN :min AND :max',
+                    '`date` >= ' => $date
+                ])
+                ->bind(':min', intval($params['min_price']))
+                ->bind(':max', intval($params['max_price']))
+                : $this->Properties;
+            dd($results);
+            $properties = $this->paginate($results);
+            $this->set(compact('properties'));
     }
-// 
+    // 
     /**
      * View method
      *

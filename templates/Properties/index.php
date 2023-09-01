@@ -21,7 +21,7 @@ $options = [
         <div class="side-nav content">
             <!-- <?= $this->Html->style([
                     'height' => '250px',
-                    'overflow-y' => 'scroll !important'
+                    'overflow-y' => 'scroll'
                 ]);
             ?> -->
             <?= $this->Form->create(null, ['type' => 'get']) ?>
@@ -34,6 +34,8 @@ $options = [
             <?= $this->Form->control('sq_ft', ['label' => 'Minimum Square Feet', 'value' => $this->request->getQuery('sq_ft')]) ?>
             <?= $this->Form->control('max_price', ['label' => 'Maximum Price', 'value' => $this->request->getQuery('max_price')]) ?>
             <?= $this->Form->control('min_price', ['label' => 'Minimum Price', 'value' => $this->request->getQuery('min_price')]) ?>
+            <?= $this->Form->label('date', 'Date', ['class'=>'input text'])?>
+            <?= $this->Form->date('date', ['value' => $this->request->getQuery('date')])?>
             <?= $this->Form->submit('Search') ?>
             <?= $this->Form->end() ?>
         </div>
