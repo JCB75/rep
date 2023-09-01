@@ -25,17 +25,17 @@ $options = [
                 ]);
             ?> -->
             <?= $this->Form->create(null, ['type' => 'get']) ?>
-            <?= $this->Form->control('mls', ['label' => 'MLS#', 'value' => $this->request->getQuery('mls')]) ?>
-            <?= $this->Form->control('address', ['label' => 'Address', 'value' => $this->request->getQuery('address')]) ?>
+            <?= $this->Form->control('mls', ['label' => 'MLS#', 'value' => $this->request->getQuery('mls')]); ?>
+            <?= $this->Form->control('address', ['label' => 'Address', 'value' => $this->request->getQuery('address')]); ?>
             <label class="input text" for="beds"><?= __('Minimum beds') ?></label>
             <?= $this->Form->select('beds', $options, ['label' => 'Minimum beds', 'value' => $this->request->getQuery('beds')]); ?>
             <label class="input text" for="baths"><?= __('Minimum baths') ?></label>
             <?= $this->Form->select('baths', $options, ['label' => 'Minimum baths', 'value' => $this->request->getQuery('baths')]); ?>
-            <?= $this->Form->control('sq_ft', ['label' => 'Minimum Square Feet', 'value' => $this->request->getQuery('sq_ft')]) ?>
-            <?= $this->Form->control('max_price', ['label' => 'Maximum Price', 'value' => $this->request->getQuery('max_price')]) ?>
-            <?= $this->Form->control('min_price', ['label' => 'Minimum Price', 'value' => $this->request->getQuery('min_price')]) ?>
+            <?= $this->Form->control('sq_ft', ['label' => 'Minimum Square Feet', 'value' => $this->request->getQuery('sq_ft')]); ?>
+            <?= $this->Form->control('max_price', ['label' => 'Maximum Price', 'value' => $this->request->getQuery('max_price')]); ?>
+            <?= $this->Form->control('min_price', ['label' => 'Minimum Price', 'value' => $this->request->getQuery('min_price')]); ?>
             <?= $this->Form->label('date', 'Date', ['class'=>'input text'])?>
-            <?= $this->Form->date('date', ['value' => $this->request->getQuery('date')])?>
+            <?= $this->Form->date('date', ['value' => $this->request->getQuery('date')]);?>
             <?= $this->Form->submit('Search') ?>
             <?= $this->Form->end() ?>
         </div>

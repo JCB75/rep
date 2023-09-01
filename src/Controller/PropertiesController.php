@@ -2,8 +2,6 @@
 declare(strict_types=1);
 
 namespace App\Controller;
-use Cake\I18n\FrozenDate;
-
 /**
  * Properties Controller
  *
@@ -21,12 +19,20 @@ class PropertiesController extends AppController
     {
             $query = $this->request->getQueryParams();
 
-        if ($query) {
-            foreach ($query as $k => $v) {
-                ($k === 'date') ?? $date = new FrozenDate($params['date']);
-                $params[$k] = $v;
-            }
-        }
+            if ($query) {
+                    foreach ($query as $k => $v) {
+                        $params[$k] = match ($k) {
+                        'date' => $v,
+                        'min_price' => ($v ? $v : 1),
+                        'max_price' => ($v ? $v : 500000),
+                        default => $v,
+                        };
+                    }
+                } else{                  
+                    $params['min_price'] = 1;
+                    $params['max_price'] = 500000;
+                }
+
 
             $results = ($query) ? $this->Properties->find('all')
                 ->where([
@@ -36,12 +42,12 @@ class PropertiesController extends AppController
                     '`baths` >=' => $params['baths'],
                     '`sq_ft` >=' => $params['sq_ft'],
                     '`price` BETWEEN :min AND :max',
-                    '`date` >= ' => $date
+                    '`date` >= ' => $params['date']
                 ])
                 ->bind(':min', intval($params['min_price']))
                 ->bind(':max', intval($params['max_price']))
                 : $this->Properties;
-            dd($results);
+            // dd($results);
             $properties = $this->paginate($results);
             $this->set(compact('properties'));
     }
